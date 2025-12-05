@@ -10,9 +10,7 @@ namespace CLOSE\KnowledgeBaseChatbot;
 
 defined( 'ABSPATH' ) || exit;
 
-use CLOSE\KnowledgeBaseChatbot\Admin\Settings;
-use CLOSE\KnowledgeBaseChatbot\Admin\Export;
-use CLOSE\KnowledgeBaseChatbot\Admin\ExportPage;
+use CLOSE\KnowledgeBaseChatbot\Admin\GeneratePage;
 
 /**
  * Plugin Main Class
@@ -29,9 +27,7 @@ class Plugin_Main {
 	 */
 	public function __construct() {
 		if ( is_admin() ) {
-			new Settings();
-			new Export();
-			new ExportPage();
+			new GeneratePage();
 		}
 	}
 }
