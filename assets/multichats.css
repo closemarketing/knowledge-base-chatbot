@@ -1,0 +1,86 @@
+#multichat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: var(--primary-light);
+  border: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+#multichat-button:hover {
+  background-color: var(--primary);
+}
+
+#multichat-button svg {
+  width: 56px;
+  height: 56px;
+  fill: white;
+}
+
+#multichat-button img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Allow inline styles to override default sizes */
+#multichat-icon {
+  max-width: 100%;
+  height: auto;
+}
+
+#multichat-iframe {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 400px;
+  height: 600px;
+  z-index: 9998;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+#multichat-iframe.active {
+  visibility: visible;
+  opacity: 1;
+}
+	
+@media (max-width: 600px) {
+  #multichat-iframe {
+    width: 90vw;
+    height: 80vh;
+    right: 5vw;
+    bottom: 90px;
+    border-radius: 12px;
+  }
+
+  #multichat-button {
+    width: 60px;
+    height: 60px;
+  }
+
+  #multichat-button svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  #multichat-button img {
+    width: 28px;
+    height: 28px;
+  }
+}
