@@ -12,20 +12,20 @@
 defined( 'ABSPATH' ) || exit;
 
 // Define plugin constants that are used throughout the codebase.
-if ( ! defined( 'MULTICHATS_VERSION' ) ) {
-	define( 'MULTICHATS_VERSION', '1.0.0' );
+if ( ! defined( 'KBCB_VERSION' ) ) {
+	define( 'KBCB_VERSION', '1.0.0' );
 }
 
-if ( ! defined( 'MULTICHATS_PLUGIN' ) ) {
-	define( 'MULTICHATS_PLUGIN', __FILE__ );
+if ( ! defined( 'KBCB_PLUGIN' ) ) {
+	define( 'KBCB_PLUGIN', __FILE__ );
 }
 
-if ( ! defined( 'MULTICHATS_PLUGIN_URL' ) ) {
-	define( 'MULTICHATS_PLUGIN_URL', 'http://localhost/wp-content/plugins/knowledge-base-chatbot/' );
+if ( ! defined( 'KBCB_PLUGIN_URL' ) ) {
+	define( 'KBCB_PLUGIN_URL', 'http://localhost/wp-content/plugins/knowledge-base-chatbot/' );
 }
 
-if ( ! defined( 'MULTICHATS_PLUGIN_PATH' ) ) {
-	define( 'MULTICHATS_PLUGIN_PATH', '/path/to/wordpress/wp-content/plugins/knowledge-base-chatbot/' );
+if ( ! defined( 'KBCB_PLUGIN_PATH' ) ) {
+	define( 'KBCB_PLUGIN_PATH', '/path/to/wordpress/wp-content/plugins/knowledge-base-chatbot/' );
 }
 
 // Define WordPress constants that might be missing.

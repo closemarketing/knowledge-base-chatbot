@@ -51,21 +51,21 @@ class ExportPage {
 	 * @return void
 	 */
 	public function enqueue_scripts( $hook ) {
-		if ( 'knowledge-base-chatbot_page_knowledge-base-chatbot-export' !== $hook ) {
+		if ( 'kb-chatbot_page_knowledge-base-chatbot-export' !== $hook ) {
 			return;
 		}
 
 		wp_enqueue_script(
 			'knowledge-base-chatbot-admin',
-			MULTICHATS_PLUGIN_URL . 'assets/knowledge-base-chatbot-admin.js',
+			KBCB_PLUGIN_URL . 'assets/knowledge-base-chatbot-admin.js',
 			array( 'jquery' ),
-			MULTICHATS_VERSION,
+			KBCB_VERSION,
 			true
 		);
 
 		wp_localize_script(
 			'knowledge-base-chatbot-admin',
-			'knowledge-base-chatbotAdmin',
+			'knowledgeBaseChatbotAdmin',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'knowledge-base-chatbot_export' ),
@@ -74,9 +74,9 @@ class ExportPage {
 
 		wp_enqueue_style(
 			'knowledge-base-chatbot-admin',
-			MULTICHATS_PLUGIN_URL . 'assets/knowledge-base-chatbot-admin.css',
+			KBCB_PLUGIN_URL . 'assets/knowledge-base-chatbot-admin.css',
 			array(),
-			MULTICHATS_VERSION
+			KBCB_VERSION
 		);
 	}
 

@@ -32,8 +32,6 @@ class Plugin_Main {
 			new Settings();
 			new Export();
 			new ExportPage();
-		} else {
-			new Chat();
 		}
 	}
 }

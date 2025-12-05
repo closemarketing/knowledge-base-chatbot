@@ -75,7 +75,7 @@ jQuery(document).ready(function ($) {
 		// Create form and submit
 		const form = $('<form>', {
 			method: 'POST',
-			action: knowledge-base-chatbotAdmin.ajaxUrl,
+			action: knowledgeBaseChatbotAdmin.ajaxUrl,
 		});
 
 		form.append(
@@ -90,7 +90,7 @@ jQuery(document).ready(function ($) {
 			$('<input>', {
 				type: 'hidden',
 				name: 'nonce',
-				value: knowledge-base-chatbotAdmin.nonce,
+				value: knowledgeBaseChatbotAdmin.nonce,
 			})
 		);
 
@@ -134,7 +134,7 @@ jQuery(document).ready(function ($) {
 		// Create form and submit
 		const form = $('<form>', {
 			method: 'POST',
-			action: knowledge-base-chatbotAdmin.ajaxUrl,
+			action: knowledgeBaseChatbotAdmin.ajaxUrl,
 		});
 
 		form.append(
@@ -149,7 +149,7 @@ jQuery(document).ready(function ($) {
 			$('<input>', {
 				type: 'hidden',
 				name: 'nonce',
-				value: knowledge-base-chatbotAdmin.nonce,
+				value: knowledgeBaseChatbotAdmin.nonce,
 			})
 		);
 

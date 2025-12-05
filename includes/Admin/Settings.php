@@ -65,8 +65,8 @@ class Settings {
 	public function add_settings_page() {
 		// Main menu page.
 		add_menu_page(
-			__( 'Multichats', 'knowledge-base-chatbot' ),
-			__( 'Multichats', 'knowledge-base-chatbot' ),
+			__( 'Knowledge Base Chatbot', 'knowledge-base-chatbot' ),
+			__( 'KB Chatbot', 'knowledge-base-chatbot' ),
 			'manage_options',
 			'knowledge-base-chatbot',
 			array( $this, 'render_settings_page' ),
@@ -360,7 +360,7 @@ class Settings {
 			}
 		}
 		// Return default icon.
-		return MULTICHATS_PLUGIN_URL . 'assets/icon-chat.svg';
+		return KBCB_PLUGIN_URL . 'assets/icon-chat.svg';
 	}
 
 	/**
@@ -392,9 +392,9 @@ class Settings {
 			// Enqueue our script for icon upload.
 			wp_enqueue_script(
 				'knowledge-base-chatbot-admin',
-				MULTICHATS_PLUGIN_URL . 'assets/admin.js',
+				KBCB_PLUGIN_URL . 'assets/admin.js',
 				array( 'jquery' ),
-				MULTICHATS_VERSION,
+				KBCB_VERSION,
 				true
 			);
 		}
