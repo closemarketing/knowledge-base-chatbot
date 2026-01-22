@@ -1,14 +1,14 @@
 === Knowledge Base Chatbot ===
-Contributors: closemarketing
-Tags: knowledge base, chatbot, ai, llm, markdown, export, documentation
+Contributors: closemarketing, davidperez, alexbreagarcia
+Tags: knowledge base, chatbot, ai, llm, markdown
 Requires at least: 5.8
-Tested up to: 6.4
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Generate a Markdown knowledge base file from selected WordPress content (Pages, Posts, and custom post types) to power an external chatbot / LLM workflow.
+Generate a Markdown knowledge base file from selected WordPress content (pages, posts, and CPTs) to power an external chatbot/LLM workflow.
 
 == Description ==
 
