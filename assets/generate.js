@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+	const i18n = (typeof kbcbGenerate !== 'undefined' && kbcbGenerate.i18n) ? kbcbGenerate.i18n : {};
+
 	// Tab switching
 	$('.nav-tab-wrapper .nav-tab').on('click', function (e) {
 		e.preventDefault();
@@ -35,7 +37,7 @@ jQuery(document).ready(function ($) {
 			.get();
 
 		if (selectedItems.length === 0) {
-			showMessage('Por favor, selecciona al menos un elemento.', 'error');
+			showMessage(i18n.selectAtLeastOne || 'Please select at least one item.', 'error');
 			return;
 		}
 
@@ -63,7 +65,7 @@ jQuery(document).ready(function ($) {
 		const $input = $(this).prev('input');
 		$input.select();
 		document.execCommand('copy');
-		showMessage('URL copiada al portapapeles.', 'success');
+		showMessage(i18n.urlCopied || 'URL copied to clipboard.', 'success');
 	});
 
 	// Make selected list sortable.
@@ -86,7 +88,7 @@ jQuery(document).ready(function ($) {
 	function addPages(postIds) {
 		const $button = $('.kbcb-add-selected');
 		const originalText = $button.text();
-		$button.prop('disabled', true).text('Añadiendo...');
+		$button.prop('disabled', true).text(i18n.adding || 'Adding...');
 
 		$.ajax({
 			url: kbcbGenerate.ajaxUrl,
@@ -108,11 +110,11 @@ jQuery(document).ready(function ($) {
 						location.reload();
 					}, 1000);
 				} else {
-					showMessage(response.data.message || 'Error al añadir páginas.', 'error');
+					showMessage(response.data.message || (i18n.addError || 'Error adding items.'), 'error');
 				}
 			},
 			error: function () {
-				showMessage('Error de comunicación con el servidor.', 'error');
+				showMessage(i18n.serverError || 'Communication error with the server.', 'error');
 			},
 			complete: function () {
 				$button.prop('disabled', false).text(originalText);
@@ -126,7 +128,7 @@ jQuery(document).ready(function ($) {
 	 * @param {number} postId Post ID.
 	 */
 	function removePage(postId) {
-		if (!confirm('¿Estás seguro de eliminar esta página de la lista?')) {
+		if (!confirm(i18n.removeConfirm || 'Are you sure you want to remove this item from the list?')) {
 			return;
 		}
 
@@ -146,7 +148,7 @@ jQuery(document).ready(function ($) {
 						
 						// Show empty message if no items left.
 						if ($('.kbcb-selected-item').length === 0) {
-							$('#kbcb-selected-list').html('<p class="kbcb-empty-message">No hay páginas seleccionadas. Añade páginas desde las pestañas de arriba.</p>');
+							$('#kbcb-selected-list').html('<p class="kbcb-empty-message">' + (i18n.emptySelectedItems || 'No items selected. Add items from the tabs above.') + '</p>');
 						}
 					});
 
@@ -158,11 +160,11 @@ jQuery(document).ready(function ($) {
 
 					showMessage(response.data.message, 'success');
 				} else {
-					showMessage(response.data.message || 'Error al eliminar página.', 'error');
+					showMessage(response.data.message || (i18n.removeError || 'Error removing item.'), 'error');
 				}
 			},
 			error: function () {
-				showMessage('Error de comunicación con el servidor.', 'error');
+				showMessage(i18n.serverError || 'Communication error with the server.', 'error');
 			}
 		});
 	}
@@ -177,13 +179,13 @@ jQuery(document).ready(function ($) {
 		});
 
 		if (order.length === 0) {
-			showMessage('No hay páginas para guardar.', 'error');
+			showMessage(i18n.noItemsToSave || 'There are no items to save.', 'error');
 			return;
 		}
 
 		const $button = $('#kbcb-save-order');
 		const originalText = $button.text();
-		$button.prop('disabled', true).text('Guardando...');
+		$button.prop('disabled', true).text(i18n.saving || 'Saving...');
 
 		$.ajax({
 			url: kbcbGenerate.ajaxUrl,
@@ -197,11 +199,11 @@ jQuery(document).ready(function ($) {
 				if (response.success) {
 					showMessage(response.data.message, 'success');
 				} else {
-					showMessage(response.data.message || 'Error al guardar orden.', 'error');
+					showMessage(response.data.message || (i18n.saveOrderError || 'Error saving order.'), 'error');
 				}
 			},
 			error: function () {
-				showMessage('Error de comunicación con el servidor.', 'error');
+				showMessage(i18n.serverError || 'Communication error with the server.', 'error');
 			},
 			complete: function () {
 				$button.prop('disabled', false).text(originalText);
@@ -213,13 +215,13 @@ jQuery(document).ready(function ($) {
 	 * Regenerate markdown file
 	 */
 	function regenerateFile() {
-		if (!confirm('¿Estás seguro de regenerar el archivo? Esto sobrescribirá el archivo existente.')) {
+		if (!confirm(i18n.regenerateConfirm || 'Are you sure you want to regenerate the file? This will overwrite the existing file.')) {
 			return;
 		}
 
 		const $button = $('#kbcb-regenerate');
 		const originalText = $button.text();
-		$button.prop('disabled', true).text('Generando...');
+		$button.prop('disabled', true).text(i18n.generating || 'Generating...');
 
 		$.ajax({
 			url: kbcbGenerate.ajaxUrl,
@@ -235,11 +237,11 @@ jQuery(document).ready(function ($) {
 					// Update file info.
 					updateFileInfo(response.data.fileUrl, response.data.fileDate);
 				} else {
-					showMessage(response.data.message || 'Error al generar archivo.', 'error');
+					showMessage(response.data.message || (i18n.generateFileError || 'Error generating file.'), 'error');
 				}
 			},
 			error: function () {
-				showMessage('Error de comunicación con el servidor.', 'error');
+				showMessage(i18n.serverError || 'Communication error with the server.', 'error');
 			},
 			complete: function () {
 				$button.prop('disabled', false).text(originalText);
@@ -268,34 +270,34 @@ jQuery(document).ready(function ($) {
 				$('.kbcb-file-url').after(`
 					<div class="kbcb-file-date">
 						<span class="dashicons dashicons-calendar-alt"></span>
-						<strong>Última actualización:</strong>
+						<strong>${i18n.lastUpdated || 'Last updated:'}</strong>
 						<span id="kbcb-file-date-value">${fileDate}</span>
-						<span class="kbcb-file-date-utc">UTC</span>
+						<span class="kbcb-file-date-utc">${i18n.utc || 'UTC'}</span>
 					</div>
 				`);
 			}
 		} else {
-			// Create new file info section.
+			// Create new file info section before the description.
 			const fileHtml = `
 				<div class="kbcb-file-info">
-					<h3>Archivo Generado</h3>
+					<h3>${i18n.generatedFile || 'Generated file'}</h3>
 					<div class="kbcb-file-url">
 						<input type="text" readonly value="${fileUrl}" />
-						<button type="button" class="button kbcb-copy-url" title="Copiar URL">
+						<button type="button" class="button kbcb-copy-url" title="${i18n.copyUrl || 'Copy URL'}">
 							<span class="dashicons dashicons-admin-page"></span>
 						</button>
 					</div>
 					${fileDate ? `
 						<div class="kbcb-file-date">
 							<span class="dashicons dashicons-calendar-alt"></span>
-							<strong>Última actualización:</strong>
+							<strong>${i18n.lastUpdated || 'Last updated:'}</strong>
 							<span id="kbcb-file-date-value">${fileDate}</span>
-							<span class="kbcb-file-date-utc">UTC</span>
+							<span class="kbcb-file-date-utc">${i18n.utc || 'UTC'}</span>
 						</div>
 					` : ''}
 				</div>
 			`;
-			$('#kbcb-message').before(fileHtml);
+			$('.kbcb-selected-section h2').after(fileHtml);
 		}
 	}
 
@@ -318,3 +320,4 @@ jQuery(document).ready(function ($) {
 		}, 5000);
 	}
 });
+

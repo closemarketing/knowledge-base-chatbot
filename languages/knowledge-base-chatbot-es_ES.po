@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Knowledge Base Chatbot 1.0.0\n"
+"POT-Creation-Date: 2026-01-22 00:00+0000\n"
+"PO-Revision-Date: 2026-01-22 00:00+0000\n"
+"Language-Team: Spanish (Spain)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: knowledge-base-chatbot\n"
+
+#. Admin / Generator (PHP).
+msgid "Generate Knowledge Base"
+msgstr "Generar Knowledge Base"
+
+msgid "Select the content you want to include in the knowledge file and reorder it as needed."
+msgstr "Selecciona las páginas que deseas incluir en el archivo de conocimiento y ordénalas según tus preferencias."
+
+msgid "Select content"
+msgstr "Seleccionar Páginas"
+
+msgid "Select all"
+msgstr "Seleccionar todas"
+
+msgid "Deselect all"
+msgstr "Deseleccionar todas"
+
+msgid "Add selected"
+msgstr "Añadir seleccionadas"
+
+msgid "No published %s found."
+msgstr "No hay %s publicados."
+
+msgid "Generated file"
+msgstr "Archivo Generado"
+
+msgid "Copy URL"
+msgstr "Copiar URL"
+
+msgid "Last updated:"
+msgstr "Última actualización:"
+
+msgid "Selected items"
+msgstr "Páginas Seleccionadas"
+
+msgid "Drag and drop to reorder items."
+msgstr "Arrastra para reordenar las páginas según tus preferencias."
+
+msgid "No items selected. Add items from the tabs above."
+msgstr "No hay páginas seleccionadas. Añade páginas desde las pestañas de arriba."
+
+msgid "Save order"
+msgstr "Guardar Orden"
+
+msgid "Regenerate file"
+msgstr "Regenerar Archivo"
+
+#. Admin / Generator (AJAX responses).
+msgid "You do not have permission to perform this action."
+msgstr "No tienes permisos para realizar esta acción."
+
+msgid "No items were selected."
+msgstr "No se seleccionaron páginas."
+
+msgid "Items added successfully. File regenerated."
+msgstr "Páginas añadidas correctamente. Archivo regenerado."
+
+msgid "Invalid item ID."
+msgstr "ID de página inválido."
+
+msgid "Item removed successfully. File regenerated."
+msgstr "Página eliminada correctamente. Archivo regenerado."
+
+msgid "Invalid order."
+msgstr "Orden inválido."
+
+msgid "Order saved successfully."
+msgstr "Orden guardado correctamente."
+
+msgid "File generated successfully."
+msgstr "Archivo generado correctamente."
+
+msgid "No items selected."
+msgstr "No hay páginas seleccionadas."
+
+msgid "Error saving the file."
+msgstr "Error al guardar el archivo."
+
+#. Admin / Export (PHP).
+msgid "Export to Markdown"
+msgstr "Exportar a Markdown"
+
+msgid "Select the content you want to export to Markdown, or export all items for a given content type."
+msgstr "Selecciona las páginas, entradas o contenido personalizado que deseas exportar en formato Markdown o exporta todo el contenido de la web."
+
+msgid "Export selected %s"
+msgstr "Exportar %s seleccionados"
+
+msgid "Export all %s"
+msgstr "Exportar todos los %s"
+
+msgid "No published %s found to export."
+msgstr "No hay %s publicados para exportar."
+
+#. Exported Markdown labels.
+msgid "Page"
+msgstr "Página"
+
+msgid "Post"
+msgstr "Entrada"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Published on"
+msgstr "Fecha de publicación"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Categories"
+msgstr "Categorías"
+
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. Settings.
+msgid "Only SVG or PNG files are allowed for the chat icon."
+msgstr "Solo se permiten archivos SVG o PNG para el icono del chat."
+
+#. Admin / Generator (JS).
+msgid "Please select at least one item."
+msgstr "Por favor, selecciona al menos un elemento."
+
+msgid "URL copied to clipboard."
+msgstr "URL copiada al portapapeles."
+
+msgid "Adding..."
+msgstr "Añadiendo..."
+
+msgid "Error adding items."
+msgstr "Error al añadir páginas."
+
+msgid "Are you sure you want to remove this item from the list?"
+msgstr "¿Estás seguro de eliminar esta página de la lista?"
+
+msgid "Error removing item."
+msgstr "Error al eliminar página."
+
+msgid "Communication error with the server."
+msgstr "Error de comunicación con el servidor."
+
+msgid "There are no items to save."
+msgstr "No hay páginas para guardar."
+
+msgid "Saving..."
+msgstr "Guardando..."
+
+msgid "Error saving order."
+msgstr "Error al guardar orden."
+
+msgid "Are you sure you want to regenerate the file? This will overwrite the existing file."
+msgstr "¿Estás seguro de regenerar el archivo? Esto sobrescribirá el archivo existente."
+
+msgid "Generating..."
+msgstr "Generando..."
+
+msgid "Error generating file."
+msgstr "Error al generar archivo."
+
+#. Admin / Export (JS).
+msgid "Please select at least one item to export."
+msgstr "Por favor, selecciona al menos un elemento para exportar."
+
+msgid "Are you sure you want to export all items of this type?"
+msgstr "¿Estás seguro de que deseas exportar todos los elementos de este tipo?"
+
+msgid "Exporting..."
+msgstr "Exportando..."
+
+#. Settings (JS).
+msgid "Select Icon (SVG or PNG)"
+msgstr "Seleccionar icono (SVG o PNG)"
+
+msgid "Use this icon"
+msgstr "Usar este icono"
+
+msgid "Please select only SVG or PNG files."
+msgstr "Por favor, selecciona solo archivos SVG o PNG."
+
+msgid "No icon selected. Default icon will be used."
+msgstr "No se ha seleccionado ningún icono. Se usará el icono por defecto."
+
+msgid "Chat icon"
+msgstr "Icono del chat"

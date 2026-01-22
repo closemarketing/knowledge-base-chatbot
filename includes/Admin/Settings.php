@@ -184,7 +184,7 @@ class Settings {
 			add_settings_error(
 				'knowledge-base-chatbot_messages',
 				'knowledge-base-chatbot_icon_error',
-				__( 'Solo se permiten archivos SVG o PNG para el icono del chat.', 'knowledge-base-chatbot' ),
+				__( 'Only SVG or PNG files are allowed for the chat icon.', 'knowledge-base-chatbot' ),
 				'error'
 			);
 			return 0;
@@ -396,6 +396,20 @@ class Settings {
 				array( 'jquery' ),
 				KBCB_VERSION,
 				true
+			);
+
+			wp_localize_script(
+				'knowledge-base-chatbot-admin',
+				'knowledgeBaseChatbotSettings',
+				array(
+					'i18n' => array(
+						'mediaTitle'     => __( 'Select Icon (SVG or PNG)', 'knowledge-base-chatbot' ),
+						'mediaButton'    => __( 'Use this icon', 'knowledge-base-chatbot' ),
+						'svgOrPngOnly'   => __( 'Please select only SVG or PNG files.', 'knowledge-base-chatbot' ),
+						'noIconSelected' => __( 'No icon selected. Default icon will be used.', 'knowledge-base-chatbot' ),
+						'chatIconAlt'    => __( 'Chat icon', 'knowledge-base-chatbot' ),
+					),
+				)
 			);
 		}
 	}

@@ -69,6 +69,11 @@ class ExportPage {
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'knowledge-base-chatbot_export' ),
+				'i18n'    => array(
+					'selectAtLeastOneToExport' => __( 'Please select at least one item to export.', 'knowledge-base-chatbot' ),
+					'confirmExportAll'         => __( 'Are you sure you want to export all items of this type?', 'knowledge-base-chatbot' ),
+					'exporting'               => __( 'Exporting...', 'knowledge-base-chatbot' ),
+				),
 			)
 		);
 
@@ -121,9 +126,9 @@ class ExportPage {
 		$first_tab  = true;
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Exportar a Markdown', 'knowledge-base-chatbot' ); ?></h1>
+			<h1><?php esc_html_e( 'Export to Markdown', 'knowledge-base-chatbot' ); ?></h1>
 			<p class="description">
-				<?php esc_html_e( 'Selecciona las páginas, entradas o contenido personalizado que deseas exportar en formato Markdown o exporta todo el contenido de la web.', 'knowledge-base-chatbot' ); ?>
+				<?php esc_html_e( 'Select the content you want to export to Markdown, or export all items for a given content type.', 'knowledge-base-chatbot' ); ?>
 			</p>
 
 			<div class="knowledge-base-chatbot-export-tabs">
@@ -164,10 +169,10 @@ class ExportPage {
 							<div class="knowledge-base-chatbot-export-section">
 								<div class="knowledge-base-chatbot-export-controls">
 									<button type="button" class="button knowledge-base-chatbot-select-all" data-type="<?php echo esc_attr( $post_type_name ); ?>">
-										<?php esc_html_e( 'Seleccionar todas', 'knowledge-base-chatbot' ); ?>
+										<?php esc_html_e( 'Select all', 'knowledge-base-chatbot' ); ?>
 									</button>
 									<button type="button" class="button knowledge-base-chatbot-deselect-all" data-type="<?php echo esc_attr( $post_type_name ); ?>">
-										<?php esc_html_e( 'Deseleccionar todas', 'knowledge-base-chatbot' ); ?>
+										<?php esc_html_e( 'Deselect all', 'knowledge-base-chatbot' ); ?>
 									</button>
 								</div>
 
@@ -185,13 +190,13 @@ class ExportPage {
 									<button type="button" class="button button-primary knowledge-base-chatbot-export-selected" data-type="<?php echo esc_attr( $post_type_name ); ?>">
 										<?php
 										/* translators: %s: Post type name */
-										printf( esc_html__( 'Exportar %s seleccionados', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
+										printf( esc_html__( 'Export selected %s', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
 										?>
 									</button>
 									<button type="button" class="button button-secondary knowledge-base-chatbot-export-all" data-type="<?php echo esc_attr( $post_type_name ); ?>">
 										<?php
 										/* translators: %s: Post type name */
-										printf( esc_html__( 'Exportar todos los %s', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
+										printf( esc_html__( 'Export all %s', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
 										?>
 									</button>
 								</div>
@@ -202,7 +207,7 @@ class ExportPage {
 							<p>
 								<?php
 								/* translators: %s: Post type name */
-								printf( esc_html__( 'No hay %s publicados para exportar.', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
+								printf( esc_html__( 'No published %s found to export.', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
 								?>
 							</p>
 						<?php endif; ?>

@@ -93,6 +93,26 @@ class GeneratePage {
 				'nonce'    => wp_create_nonce( 'kbcb_generate' ),
 				'fileUrl'  => $this->get_file_url(),
 				'fileDate' => $this->get_file_date(),
+				'i18n'     => array(
+					'selectAtLeastOne'   => __( 'Please select at least one item.', 'knowledge-base-chatbot' ),
+					'urlCopied'          => __( 'URL copied to clipboard.', 'knowledge-base-chatbot' ),
+					'adding'             => __( 'Adding...', 'knowledge-base-chatbot' ),
+					'addError'           => __( 'Error adding items.', 'knowledge-base-chatbot' ),
+					'removeConfirm'      => __( 'Are you sure you want to remove this item from the list?', 'knowledge-base-chatbot' ),
+					'removeError'        => __( 'Error removing item.', 'knowledge-base-chatbot' ),
+					'serverError'        => __( 'Communication error with the server.', 'knowledge-base-chatbot' ),
+					'noItemsToSave'      => __( 'There are no items to save.', 'knowledge-base-chatbot' ),
+					'saving'             => __( 'Saving...', 'knowledge-base-chatbot' ),
+					'saveOrderError'     => __( 'Error saving order.', 'knowledge-base-chatbot' ),
+					'regenerateConfirm'  => __( 'Are you sure you want to regenerate the file? This will overwrite the existing file.', 'knowledge-base-chatbot' ),
+					'generating'         => __( 'Generating...', 'knowledge-base-chatbot' ),
+					'generateFileError'  => __( 'Error generating file.', 'knowledge-base-chatbot' ),
+					'emptySelectedItems' => __( 'No items selected. Add items from the tabs above.', 'knowledge-base-chatbot' ),
+					'generatedFile'      => __( 'Generated file', 'knowledge-base-chatbot' ),
+					'copyUrl'            => __( 'Copy URL', 'knowledge-base-chatbot' ),
+					'lastUpdated'        => __( 'Last updated:', 'knowledge-base-chatbot' ),
+					'utc'                => __( 'UTC', 'knowledge-base-chatbot' ),
+				),
 			)
 		);
 
@@ -184,13 +204,13 @@ class GeneratePage {
 		check_ajax_referer( 'kbcb_generate', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'No tienes permisos para realizar esta acción.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$post_ids = isset( $_POST['post_ids'] ) ? array_map( 'intval', $_POST['post_ids'] ) : array();
 
 		if ( empty( $post_ids ) ) {
-			wp_send_json_error( array( 'message' => __( 'No se seleccionaron páginas.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'No items were selected.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$selected = $this->get_selected_pages();
@@ -222,7 +242,7 @@ class GeneratePage {
 
 		wp_send_json_success(
 			array(
-				'message' => __( 'Páginas añadidas correctamente. Archivo regenerado.', 'knowledge-base-chatbot' ),
+				'message'  => __( 'Items added successfully. File regenerated.', 'knowledge-base-chatbot' ),
 				'pages'   => $pages,
 				'fileUrl' => $this->get_file_url(),
 				'fileDate' => $this->get_file_date(),
@@ -239,13 +259,13 @@ class GeneratePage {
 		check_ajax_referer( 'kbcb_generate', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'No tienes permisos para realizar esta acción.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$post_id = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : 0;
 
 		if ( ! $post_id ) {
-			wp_send_json_error( array( 'message' => __( 'ID de página inválido.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid item ID.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$selected = $this->get_selected_pages();
@@ -262,7 +282,7 @@ class GeneratePage {
 
 		wp_send_json_success(
 			array(
-				'message'  => __( 'Página eliminada correctamente. Archivo regenerado.', 'knowledge-base-chatbot' ),
+				'message'  => __( 'Item removed successfully. File regenerated.', 'knowledge-base-chatbot' ),
 				'fileUrl'  => $this->get_file_url(),
 				'fileDate' => $this->get_file_date(),
 			)
@@ -278,18 +298,18 @@ class GeneratePage {
 		check_ajax_referer( 'kbcb_generate', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'No tienes permisos para realizar esta acción.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$order = isset( $_POST['order'] ) ? array_map( 'intval', $_POST['order'] ) : array();
 
 		if ( empty( $order ) ) {
-			wp_send_json_error( array( 'message' => __( 'Orden inválido.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid order.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$this->save_selected_pages( $order );
 
-		wp_send_json_success( array( 'message' => __( 'Orden guardado correctamente.', 'knowledge-base-chatbot' ) ) );
+		wp_send_json_success( array( 'message' => __( 'Order saved successfully.', 'knowledge-base-chatbot' ) ) );
 	}
 
 	/**
@@ -301,7 +321,7 @@ class GeneratePage {
 		check_ajax_referer( 'kbcb_generate', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'No tienes permisos para realizar esta acción.', 'knowledge-base-chatbot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'knowledge-base-chatbot' ) ) );
 		}
 
 		$result = $this->generate_markdown_file();
@@ -312,7 +332,7 @@ class GeneratePage {
 
 		wp_send_json_success(
 			array(
-				'message'  => __( 'Archivo generado correctamente.', 'knowledge-base-chatbot' ),
+				'message'  => __( 'File generated successfully.', 'knowledge-base-chatbot' ),
 				'fileUrl'  => $this->get_file_url(),
 				'fileDate' => $this->get_file_date(),
 			)
@@ -328,7 +348,7 @@ class GeneratePage {
 		$selected = $this->get_selected_pages();
 
 		if ( empty( $selected ) ) {
-			return new \WP_Error( 'no_pages', __( 'No hay páginas seleccionadas.', 'knowledge-base-chatbot' ) );
+			return new \WP_Error( 'no_pages', __( 'No items selected.', 'knowledge-base-chatbot' ) );
 		}
 
 		$markdown = "# Knowledge Base\n\n";
@@ -347,20 +367,46 @@ class GeneratePage {
 
 			// Get content and clean it.
 			$content = $post->post_content;
+			
+			// Strip HTML tags.
 			$content = wp_strip_all_tags( $content );
-			$content = html_entity_decode( $content );
+			
+			// Decode HTML entities with proper UTF-8 handling.
+			$content = html_entity_decode( $content, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+			
+			// Convert to UTF-8 if needed.
+			if ( ! mb_check_encoding( $content, 'UTF-8' ) ) {
+				$content = mb_convert_encoding( $content, 'UTF-8', mb_detect_encoding( $content ) );
+			}
+			
+			// Clean up whitespace.
 			$content = preg_replace( '/\n\s*\n/', "\n\n", $content );
+			$content = trim( $content );
 
 			$markdown .= $content . "\n\n";
 			$markdown .= "---\n\n";
 		}
 
-		// Save file to WordPress root.
+		// Ensure markdown content is UTF-8.
+		$markdown = mb_convert_encoding( $markdown, 'UTF-8', 'UTF-8' );
+
+		// Save file to WordPress root with UTF-8 encoding.
 		$file_path = ABSPATH . self::GENERATED_FILE_NAME;
-		$result    = file_put_contents( $file_path, $markdown );
+		
+		// Use WP_Filesystem for better compatibility.
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+		global $wp_filesystem;
+		
+		if ( $wp_filesystem ) {
+			$result = $wp_filesystem->put_contents( $file_path, $markdown, FS_CHMOD_FILE );
+		} else {
+			// Fallback to file_put_contents.
+			$result = file_put_contents( $file_path, $markdown, LOCK_EX );
+		}
 
 		if ( false === $result ) {
-			return new \WP_Error( 'file_error', __( 'Error al guardar el archivo.', 'knowledge-base-chatbot' ) );
+			return new \WP_Error( 'file_error', __( 'Error saving the file.', 'knowledge-base-chatbot' ) );
 		}
 
 		return true;
@@ -381,15 +427,15 @@ class GeneratePage {
 		$first_tab  = true;
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Generar Knowledge Base', 'knowledge-base-chatbot' ); ?></h1>
+			<h1><?php esc_html_e( 'Generate Knowledge Base', 'knowledge-base-chatbot' ); ?></h1>
 			<p class="description">
-				<?php esc_html_e( 'Selecciona las páginas que deseas incluir en el archivo de conocimiento y ordénalas según tus preferencias.', 'knowledge-base-chatbot' ); ?>
+				<?php esc_html_e( 'Select the content you want to include in the knowledge file and reorder it as needed.', 'knowledge-base-chatbot' ); ?>
 			</p>
 
 			<div class="kbcb-generate-container">
 				<!-- Selection Section -->
 				<div class="kbcb-selection-section">
-					<h2><?php esc_html_e( 'Seleccionar Páginas', 'knowledge-base-chatbot' ); ?></h2>
+					<h2><?php esc_html_e( 'Select content', 'knowledge-base-chatbot' ); ?></h2>
 					
 					<div class="kbcb-tabs">
 						<nav class="nav-tab-wrapper">
@@ -444,20 +490,20 @@ class GeneratePage {
 									</div>
 									<div class="kbcb-controls">
 										<button type="button" class="button kbcb-select-all" data-type="<?php echo esc_attr( $post_type_name ); ?>">
-											<?php esc_html_e( 'Seleccionar todas', 'knowledge-base-chatbot' ); ?>
+											<?php esc_html_e( 'Select all', 'knowledge-base-chatbot' ); ?>
 										</button>
 										<button type="button" class="button kbcb-deselect-all" data-type="<?php echo esc_attr( $post_type_name ); ?>">
-											<?php esc_html_e( 'Deseleccionar todas', 'knowledge-base-chatbot' ); ?>
+											<?php esc_html_e( 'Deselect all', 'knowledge-base-chatbot' ); ?>
 										</button>
 										<button type="button" class="button button-primary kbcb-add-selected" data-type="<?php echo esc_attr( $post_type_name ); ?>">
-											<?php esc_html_e( 'Añadir seleccionadas', 'knowledge-base-chatbot' ); ?>
+											<?php esc_html_e( 'Add selected', 'knowledge-base-chatbot' ); ?>
 										</button>
 									</div>
 								<?php else : ?>
 									<p>
 										<?php
 										/* translators: %s: Post type name */
-										printf( esc_html__( 'No hay %s publicados.', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
+										printf( esc_html__( 'No published %s found.', 'knowledge-base-chatbot' ), esc_html( strtolower( $post_type_obj->labels->name ) ) );
 										?>
 									</p>
 								<?php endif; ?>
@@ -468,9 +514,29 @@ class GeneratePage {
 
 				<!-- Selected Pages Section -->
 				<div class="kbcb-selected-section">
-					<h2><?php esc_html_e( 'Páginas Seleccionadas', 'knowledge-base-chatbot' ); ?></h2>
+					<?php if ( $this->get_file_url() ) : ?>
+						<div class="kbcb-file-info">
+							<h3><?php esc_html_e( 'Generated file', 'knowledge-base-chatbot' ); ?></h3>
+							<div class="kbcb-file-url">
+								<input type="text" readonly value="<?php echo esc_attr( $this->get_file_url() ); ?>" />
+								<button type="button" class="button kbcb-copy-url" title="<?php esc_attr_e( 'Copy URL', 'knowledge-base-chatbot' ); ?>">
+									<span class="dashicons dashicons-admin-page"></span>
+								</button>
+							</div>
+							<?php if ( $this->get_file_date() ) : ?>
+								<div class="kbcb-file-date">
+									<span class="dashicons dashicons-calendar-alt"></span>
+									<strong><?php esc_html_e( 'Last updated:', 'knowledge-base-chatbot' ); ?></strong>
+									<span id="kbcb-file-date-value"><?php echo esc_html( $this->get_file_date() ); ?></span>
+									<span class="kbcb-file-date-utc"><?php esc_html_e( 'UTC', 'knowledge-base-chatbot' ); ?></span>
+								</div>
+							<?php endif; ?>
+						</div>
+					<?php endif; ?>
+
+					<h2><?php esc_html_e( 'Selected items', 'knowledge-base-chatbot' ); ?></h2>
 					<p class="description">
-						<?php esc_html_e( 'Arrastra para reordenar las páginas según tus preferencias.', 'knowledge-base-chatbot' ); ?>
+						<?php esc_html_e( 'Drag and drop to reorder items.', 'knowledge-base-chatbot' ); ?>
 					</p>
 					
 					<div id="kbcb-selected-list" class="kbcb-selected-list">
@@ -496,7 +562,7 @@ class GeneratePage {
 							endforeach;
 						else :
 							?>
-							<p class="kbcb-empty-message"><?php esc_html_e( 'No hay páginas seleccionadas. Añade páginas desde las pestañas de arriba.', 'knowledge-base-chatbot' ); ?></p>
+							<p class="kbcb-empty-message"><?php esc_html_e( 'No items selected. Add items from the tabs above.', 'knowledge-base-chatbot' ); ?></p>
 							<?php
 						endif;
 						?>
@@ -504,32 +570,12 @@ class GeneratePage {
 
 					<div class="kbcb-actions">
 						<button type="button" id="kbcb-save-order" class="button button-secondary">
-							<?php esc_html_e( 'Guardar Orden', 'knowledge-base-chatbot' ); ?>
+							<?php esc_html_e( 'Save order', 'knowledge-base-chatbot' ); ?>
 						</button>
 						<button type="button" id="kbcb-regenerate" class="button button-primary">
-							<?php esc_html_e( 'Regenerar Archivo', 'knowledge-base-chatbot' ); ?>
+							<?php esc_html_e( 'Regenerate file', 'knowledge-base-chatbot' ); ?>
 						</button>
 					</div>
-
-					<?php if ( $this->get_file_url() ) : ?>
-						<div class="kbcb-file-info">
-							<h3><?php esc_html_e( 'Archivo Generado', 'knowledge-base-chatbot' ); ?></h3>
-							<div class="kbcb-file-url">
-								<input type="text" readonly value="<?php echo esc_attr( $this->get_file_url() ); ?>" />
-								<button type="button" class="button kbcb-copy-url" title="<?php esc_attr_e( 'Copiar URL', 'knowledge-base-chatbot' ); ?>">
-									<span class="dashicons dashicons-admin-page"></span>
-								</button>
-							</div>
-							<?php if ( $this->get_file_date() ) : ?>
-								<div class="kbcb-file-date">
-									<span class="dashicons dashicons-calendar-alt"></span>
-									<strong><?php esc_html_e( 'Última actualización:', 'knowledge-base-chatbot' ); ?></strong>
-									<span id="kbcb-file-date-value"><?php echo esc_html( $this->get_file_date() ); ?></span>
-									<span class="kbcb-file-date-utc"><?php esc_html_e( 'UTC', 'knowledge-base-chatbot' ); ?></span>
-								</div>
-							<?php endif; ?>
-						</div>
-					<?php endif; ?>
 
 					<div id="kbcb-message" class="kbcb-message" style="display: none;"></div>
 				</div>

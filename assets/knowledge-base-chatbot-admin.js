@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+	const i18n = (typeof knowledgeBaseChatbotAdmin !== 'undefined' && knowledgeBaseChatbotAdmin.i18n) ? knowledgeBaseChatbotAdmin.i18n : {};
+
 	// Tab switching
 	$('.nav-tab-wrapper .nav-tab').on('click', function (e) {
 		e.preventDefault();
@@ -36,7 +38,7 @@ jQuery(document).ready(function ($) {
 
 		if (selectedItems.length === 0) {
 			showMessage(
-				'Por favor, selecciona al menos un elemento para exportar.',
+				i18n.selectAtLeastOneToExport || 'Please select at least one item to export.',
 				'error',
 				type
 			);
@@ -52,7 +54,7 @@ jQuery(document).ready(function ($) {
 		
 		if (
 			!confirm(
-				'¿Estás seguro de que deseas exportar todos los elementos de este tipo?'
+				i18n.confirmExportAll || 'Are you sure you want to export all items of this type?'
 			)
 		) {
 			return;
@@ -70,7 +72,7 @@ jQuery(document).ready(function ($) {
 	function exportSelected(postType, postIds) {
 		const $button = $('.knowledge-base-chatbot-export-selected[data-type="' + postType + '"]');
 		const originalText = $button.text();
-		$button.prop('disabled', true).text('Exportando...');
+		$button.prop('disabled', true).text(i18n.exporting || 'Exporting...');
 
 		// Create form and submit
 		const form = $('<form>', {
@@ -129,7 +131,7 @@ jQuery(document).ready(function ($) {
 	function exportAll(postType) {
 		const $button = $('.knowledge-base-chatbot-export-all[data-type="' + postType + '"]');
 		const originalText = $button.text();
-		$button.prop('disabled', true).text('Exportando...');
+		$button.prop('disabled', true).text(i18n.exporting || 'Exporting...');
 
 		// Create form and submit
 		const form = $('<form>', {

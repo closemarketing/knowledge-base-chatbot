@@ -330,7 +330,7 @@ class Export {
 	 */
 	private function export_posts_to_markdown( $post_ids, $post_type = 'page' ) {
 		$markdown   = '';
-		$type_label = ( 'page' === $post_type ) ? __( 'Página', 'knowledge-base-chatbot' ) : __( 'Entrada', 'knowledge-base-chatbot' );
+		$type_label = ( 'page' === $post_type ) ? __( 'Page', 'knowledge-base-chatbot' ) : __( 'Post', 'knowledge-base-chatbot' );
 
 		foreach ( $post_ids as $post_id ) {
 			$post = get_post( $post_id );
@@ -344,15 +344,15 @@ class Export {
 
 			// Post/Page metadata.
 			$post_url  = get_permalink( $post_id );
-			$markdown .= '**Tipo:** ' . $type_label . "\n\n";
+			$markdown .= '**' . __( 'Type', 'knowledge-base-chatbot' ) . ':** ' . $type_label . "\n\n";
 			$markdown .= '**URL:** ' . $post_url . "\n\n";
-			$markdown .= '**Fecha de publicación:** ' . get_the_date( 'Y-m-d H:i:s', $post_id ) . "\n\n";
+			$markdown .= '**' . __( 'Published on', 'knowledge-base-chatbot' ) . ':** ' . get_the_date( 'Y-m-d H:i:s', $post_id ) . "\n\n";
 
 			// Add author if it's a post.
 			if ( 'post' === $post_type ) {
 				$author = get_the_author_meta( 'display_name', $post->post_author );
 				if ( $author ) {
-					$markdown .= '**Autor:** ' . $author . "\n\n";
+					$markdown .= '**' . __( 'Author', 'knowledge-base-chatbot' ) . ':** ' . $author . "\n\n";
 				}
 
 				// Add categories if it's a post.
@@ -364,7 +364,7 @@ class Export {
 						},
 						$categories
 					);
-					$markdown .= '**Categorías:** ' . implode( ', ', $cat_names ) . "\n\n";
+					$markdown .= '**' . __( 'Categories', 'knowledge-base-chatbot' ) . ':** ' . implode( ', ', $cat_names ) . "\n\n";
 				}
 
 				// Add tags if it's a post.
@@ -376,7 +376,7 @@ class Export {
 						},
 						$tags
 					);
-					$markdown .= '**Etiquetas:** ' . implode( ', ', $tag_names ) . "\n\n";
+					$markdown .= '**' . __( 'Tags', 'knowledge-base-chatbot' ) . ':** ' . implode( ', ', $tag_names ) . "\n\n";
 				}
 			}
 

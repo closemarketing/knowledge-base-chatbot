@@ -11,6 +11,7 @@
 
 	$(document).ready(function() {
 		let fileFrame;
+		const i18n = (typeof knowledgeBaseChatbotSettings !== 'undefined' && knowledgeBaseChatbotSettings.i18n) ? knowledgeBaseChatbotSettings.i18n : {};
 
 		// Handle icon upload button.
 		$(document).on('click', '.knowledge-base-chatbot-upload-icon', function(e) {
@@ -30,9 +31,9 @@
 
 			// Create the media frame.
 			fileFrame = wp.media({
-				title: 'Select Icon (SVG or PNG)',
+				title: i18n.mediaTitle || 'Select Icon (SVG or PNG)',
 				button: {
-					text: 'Use this icon',
+					text: i18n.mediaButton || 'Use this icon',
 				},
 				multiple: false,
 				library: {
@@ -47,19 +48,19 @@
 				// Validate that it's an SVG or PNG file.
 				const allowedMimes = ['image/svg+xml', 'image/png'];
 				if (attachment.mime && !allowedMimes.includes(attachment.mime)) {
-					alert('Por favor, selecciona solo archivos SVG o PNG.');
+					alert(i18n.svgOrPngOnly || 'Please select only SVG or PNG files.');
 					return;
 				}
 				
 				// Check file extension as fallback.
 				const filename = attachment.filename ? attachment.filename.toLowerCase() : '';
 				if (filename && !filename.endsWith('.svg') && !filename.endsWith('.png')) {
-					alert('Por favor, selecciona solo archivos SVG o PNG.');
+					alert(i18n.svgOrPngOnly || 'Please select only SVG or PNG files.');
 					return;
 				}
 				
 				fileInput.val(attachment.id);
-				preview.html('<img src="' + attachment.url + '" alt="Chat Icon" style="max-width: 100px; height: auto; display: block;" />');
+				preview.html('<img src="' + attachment.url + '" alt="' + (i18n.chatIconAlt || 'Chat icon') + '" style="max-width: 100px; height: auto; display: block;" />');
 				removeBtn.show();
 			});
 
@@ -77,7 +78,7 @@
 			const preview = button.closest('.knowledge-base-chatbot-icon-field').find('.knowledge-base-chatbot-icon-preview');
 
 			fileInput.val('');
-			preview.html('<p class="description">No icon selected. Default icon will be used.</p>');
+			preview.html('<p class="description">' + (i18n.noIconSelected || 'No icon selected. Default icon will be used.') + '</p>');
 			button.hide();
 		});
 	});
