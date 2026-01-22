@@ -4,8 +4,8 @@
  * Plugin URI:  https://wordpress.org/plugins/knowledge-base-chatbot/
  * Description: Generate a Markdown knowledge base file from selected WordPress content (pages, posts, and CPTs) to power an external chatbot/LLM workflow.
  * Version:     1.0.0
- * Author:      Closemarketing
- * Author URI:  https://close.marketing
+ * Author:      Closetechnology
+ * Author URI:  https://close.technology
  * Text Domain: knowledge-base-chatbot
  * Domain Path: /languages
  * License:     GPL-2.0+
