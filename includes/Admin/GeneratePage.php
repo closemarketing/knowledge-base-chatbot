@@ -33,6 +33,13 @@ class GeneratePage {
 	const GENERATED_FILE_NAME = 'llm-knowledge-chatbot.md';
 
 	/**
+	 * Subfolder name under wp-content/uploads for plugin files
+	 *
+	 * @var string
+	 */
+	const UPLOADS_SUBFOLDER = 'knowledge-base-chatbot';
+
+	/**
 	 * Constructor
 	 *
 	 * @return void
@@ -170,14 +177,34 @@ class GeneratePage {
 	}
 
 	/**
+	 * Get plugin uploads directory path (under wp-content/uploads/knowledge-base-chatbot/)
+	 *
+	 * @return string
+	 */
+	private function get_plugin_uploads_path() {
+		$upload_dir = wp_upload_dir();
+		return trailingslashit( $upload_dir['basedir'] ) . self::UPLOADS_SUBFOLDER . '/';
+	}
+
+	/**
+	 * Get plugin uploads directory URL
+	 *
+	 * @return string
+	 */
+	private function get_plugin_uploads_url() {
+		$upload_dir = wp_upload_dir();
+		return trailingslashit( $upload_dir['baseurl'] ) . self::UPLOADS_SUBFOLDER . '/';
+	}
+
+	/**
 	 * Get file URL
 	 *
 	 * @return string
 	 */
 	private function get_file_url() {
-		$file_path = ABSPATH . self::GENERATED_FILE_NAME;
+		$file_path = $this->get_plugin_uploads_path() . self::GENERATED_FILE_NAME;
 		if ( file_exists( $file_path ) ) {
-			return home_url( '/' . self::GENERATED_FILE_NAME );
+			return $this->get_plugin_uploads_url() . self::GENERATED_FILE_NAME;
 		}
 		return '';
 	}
@@ -188,7 +215,7 @@ class GeneratePage {
 	 * @return string
 	 */
 	private function get_file_date() {
-		$file_path = ABSPATH . self::GENERATED_FILE_NAME;
+		$file_path = $this->get_plugin_uploads_path() . self::GENERATED_FILE_NAME;
 		if ( file_exists( $file_path ) ) {
 			return gmdate( 'Y-m-d H:i:s', filemtime( $file_path ) );
 		}
@@ -390,18 +417,23 @@ class GeneratePage {
 		// Ensure markdown content is UTF-8.
 		$markdown = mb_convert_encoding( $markdown, 'UTF-8', 'UTF-8' );
 
-		// Save file to WordPress root with UTF-8 encoding.
-		$file_path = ABSPATH . self::GENERATED_FILE_NAME;
-		
-		// Use WP_Filesystem for better compatibility.
+		$upload_dir = wp_upload_dir();
+		if ( ! empty( $upload_dir['error'] ) ) {
+			return new \WP_Error( 'upload_dir', $upload_dir['error'] );
+		}
+		$plugin_uploads_path = $this->get_plugin_uploads_path();
+		if ( ! wp_mkdir_p( $plugin_uploads_path ) ) {
+			return new \WP_Error( 'dir_error', __( 'Could not create uploads directory.', 'knowledge-base-chatbot' ) );
+		}
+		$file_path = $plugin_uploads_path . self::GENERATED_FILE_NAME;
+
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		WP_Filesystem();
 		global $wp_filesystem;
-		
+
 		if ( $wp_filesystem ) {
 			$result = $wp_filesystem->put_contents( $file_path, $markdown, FS_CHMOD_FILE );
 		} else {
-			// Fallback to file_put_contents.
 			$result = file_put_contents( $file_path, $markdown, LOCK_EX );
 		}
 
