@@ -1,0 +1,306 @@
+/* Generate Page Styles */
+
+.kbcb-generate-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+	margin-top: 30px;
+}
+
+@media (max-width: 1200px) {
+	.kbcb-generate-container {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Selection Section */
+.kbcb-selection-section {
+	background: #fff;
+	padding: 20px;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.kbcb-selection-section h2 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	font-size: 18px;
+}
+
+/* Tabs */
+.kbcb-tabs .nav-tab-wrapper {
+	margin-bottom: 0;
+	border-bottom: 1px solid #ccd0d4;
+}
+
+.kbcb-tab-content {
+	display: none;
+	padding: 20px 0;
+}
+
+.kbcb-tab-content.kbcb-tab-active {
+	display: block;
+}
+
+/* Items List */
+.kbcb-items-list {
+	max-height: 400px;
+	overflow-y: auto;
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 15px;
+	background: #f9f9f9;
+}
+
+.kbcb-item {
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	margin-bottom: 5px;
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.kbcb-item:hover {
+	background: #f0f0f0;
+	border-color: #0073aa;
+}
+
+.kbcb-item.kbcb-item-selected {
+	background: #e8f5e9;
+	border-color: #4caf50;
+}
+
+.kbcb-item input[type="checkbox"] {
+	margin: 0 10px 0 0;
+	flex-shrink: 0;
+}
+
+.kbcb-item-title {
+	font-weight: 600;
+	color: #23282d;
+	flex: 1;
+}
+
+.kbcb-item-type {
+	font-size: 12px;
+	color: #666;
+	padding: 2px 8px;
+	background: #f0f0f0;
+	border-radius: 3px;
+	margin-left: 10px;
+}
+
+/* Controls */
+.kbcb-controls {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+/* Selected Section */
+.kbcb-selected-section {
+	background: #fff;
+	padding: 20px;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.kbcb-selected-section h2 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.kbcb-selected-section > .description {
+	margin-bottom: 20px;
+	color: #666;
+}
+
+/* Selected List */
+.kbcb-selected-list {
+	min-height: 200px;
+	max-height: 500px;
+	overflow-y: auto;
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 20px;
+	background: #f9f9f9;
+}
+
+.kbcb-empty-message {
+	text-align: center;
+	color: #666;
+	padding: 40px 20px;
+	font-style: italic;
+}
+
+.kbcb-selected-item {
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	margin-bottom: 8px;
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	transition: all 0.2s;
+}
+
+.kbcb-selected-item:hover {
+	border-color: #0073aa;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.kbcb-drag-handle {
+	cursor: move;
+	color: #999;
+	margin-right: 12px;
+	font-size: 18px;
+}
+
+.kbcb-drag-handle:hover {
+	color: #0073aa;
+}
+
+.kbcb-selected-item-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.kbcb-selected-item-title {
+	font-weight: 600;
+	color: #23282d;
+	margin-bottom: 4px;
+}
+
+.kbcb-selected-item-type {
+	font-size: 12px;
+	color: #666;
+}
+
+.wp-core-ui .button.kbcb-remove-item {
+	padding: 10px 8px 0;
+	min-width: auto;
+	height: auto;
+	background: transparent;
+	border: none;
+	color: #dc3232;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.kbcb-remove-item:hover {
+	color: #a00;
+	background: #ffe5e5;
+}
+
+.kbcb-remove-item .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+/* Sortable Placeholder */
+.kbcb-selected-item-placeholder {
+	background: #e3f2fd;
+	border: 2px dashed #2196f3;
+	margin-bottom: 8px;
+	height: 50px;
+	border-radius: 3px;
+}
+
+/* Actions */
+.kbcb-actions {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+	flex-wrap: wrap;
+}
+
+/* File Info */
+.kbcb-file-info {
+	background: #f0f6fc;
+	border: 1px solid #c3e0f7;
+	border-radius: 4px;
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+.kbcb-file-info h3 {
+	margin: 0 0 10px 0;
+	font-size: 14px;
+	color: #0073aa;
+}
+
+.kbcb-file-url {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.kbcb-file-url input[type="text"] {
+	flex: 1;
+	padding: 8px 12px;
+	border: 1px solid #ccd0d4;
+	border-radius: 3px;
+	background: #fff;
+	font-family: monospace;
+	font-size: 13px;
+}
+
+.wp-core-ui .button.kbcb-copy-url {
+	padding: 12px 12px 0;
+	min-width: auto;
+}
+
+.wp-core-ui .button.kbcb-copy-url .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.kbcb-file-date {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	background: rgba(0, 115, 170, 0.05);
+	border-radius: 3px;
+	font-size: 13px;
+}
+
+.kbcb-file-date .dashicons {
+	color: #0073aa;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.kbcb-file-date strong {
+	color: #23282d;
+}
+
+.kbcb-file-date-utc {
+	color: #666;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+/* Message */
+.kbcb-message {
+	margin-top: 15px;
+}
+
+.kbcb-message p {
+	margin: 0.5em 0;
+}
+
+/* Loading States */
+button[disabled] {
+	opacity: 0.6;
+	cursor: not-allowed !important;
+}

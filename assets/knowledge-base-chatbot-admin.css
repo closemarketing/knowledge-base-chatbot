@@ -1,0 +1,144 @@
+.knowledge-base-chatbot-export-tabs {
+	margin-top: 30px;
+}
+
+.knowledge-base-chatbot-export-tabs .nav-tab-wrapper {
+	margin-bottom: 0;
+	border-bottom: 1px solid #ccd0d4;
+}
+
+.knowledge-base-chatbot-tab-content {
+	display: none;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	border-top: none;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.knowledge-base-chatbot-tab-content.knowledge-base-chatbot-tab-active {
+	display: block;
+}
+
+.knowledge-base-chatbot-export-section {
+	margin-top: 0;
+	padding: 0;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+.knowledge-base-chatbot-export-controls {
+	margin-bottom: 20px;
+}
+
+.knowledge-base-chatbot-export-controls .button {
+	margin-right: 10px;
+}
+
+.knowledge-base-chatbot-items-list {
+	max-height: 400px;
+	overflow-y: auto;
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 20px;
+	background: #f9f9f9;
+}
+
+.knowledge-base-chatbot-item {
+	display: block;
+	padding: 10px;
+	margin-bottom: 5px;
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.knowledge-base-chatbot-item:hover {
+	background: #f0f0f0;
+}
+
+.knowledge-base-chatbot-item input[type="checkbox"] {
+	margin-right: 10px;
+}
+
+.knowledge-base-chatbot-item-title {
+	font-weight: 600;
+	color: #23282d;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.knowledge-base-chatbot-item-url {
+	font-size: 12px;
+	color: #666;
+	display: block;
+}
+
+.knowledge-base-chatbot-export-buttons {
+	margin-top: 20px;
+}
+
+.knowledge-base-chatbot-export-buttons .button {
+	margin-right: 10px;
+}
+
+.knowledge-base-chatbot-export-message {
+	margin-top: 15px;
+}
+
+.knowledge-base-chatbot-export-message p {
+	margin: 0.5em 0;
+}
+
+/* Legacy support for old class names */
+.knowledge-base-chatbot-pages-list {
+	max-height: 400px;
+	overflow-y: auto;
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 20px;
+	background: #f9f9f9;
+}
+
+.knowledge-base-chatbot-page-item {
+	display: block;
+	padding: 10px;
+	margin-bottom: 5px;
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.knowledge-base-chatbot-page-item:hover {
+	background: #f0f0f0;
+}
+
+.knowledge-base-chatbot-page-item input[type="checkbox"] {
+	margin-right: 10px;
+}
+
+.knowledge-base-chatbot-page-title {
+	font-weight: 600;
+	color: #23282d;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.knowledge-base-chatbot-page-url {
+	font-size: 12px;
+	color: #666;
+	display: block;
+}
+
+.knowledge-base-chatbot-message {
+	margin-top: 15px;
+}
+
+.knowledge-base-chatbot-message p {
+	margin: 0.5em 0;
+}
