@@ -39,7 +39,7 @@ The generated file is saved in your WordPress root folder and can be accessed vi
 The file is saved in the WordPress installation root, using the filename `llm-knowledge-chatbot.md`.
 
 = Does the file become publicly accessible? =
-Yes. Since the file is created in the web root, it can be accessible at `https://your-site.com/llm-knowledge-chatbot.md` (depending on your server configuration).
+Yes. Since the file is created in the web root, it can be accessible at `https://your-site.com/wp-content/uploads/knowledge-base-chatbot/llm-knowledge-chatbot.md` (depending on your server configuration).
 
 If you need this file to be private, you should restrict access at the server level (recommended).
 
