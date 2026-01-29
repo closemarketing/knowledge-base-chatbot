@@ -270,8 +270,8 @@ class GeneratePage {
 		wp_send_json_success(
 			array(
 				'message'  => __( 'Items added successfully. File regenerated.', 'knowledge-base-chatbot' ),
-				'pages'   => $pages,
-				'fileUrl' => $this->get_file_url(),
+				'pages'    => $pages,
+				'fileUrl'  => $this->get_file_url(),
 				'fileDate' => $this->get_file_date(),
 			)
 		);
@@ -369,7 +369,7 @@ class GeneratePage {
 	/**
 	 * Generate markdown file
 	 *
-	 * @return true|WP_Error
+	 * @return true|\WP_Error
 	 */
 	private function generate_markdown_file() {
 		$selected = $this->get_selected_pages();
@@ -378,8 +378,8 @@ class GeneratePage {
 			return new \WP_Error( 'no_pages', __( 'No items selected.', 'knowledge-base-chatbot' ) );
 		}
 
-		$markdown = "# Knowledge Base\n\n";
-		$markdown .= "Generated on: " . gmdate( 'Y-m-d H:i:s' ) . " UTC\n\n";
+		$markdown  = "# Knowledge Base\n\n";
+		$markdown .= 'Generated on: ' . gmdate( 'Y-m-d H:i:s' ) . " UTC\n\n";
 		$markdown .= "---\n\n";
 
 		foreach ( $selected as $post_id ) {
@@ -388,24 +388,24 @@ class GeneratePage {
 				continue;
 			}
 
-			$markdown .= "## " . $post->post_title . "\n\n";
-			$markdown .= "**URL:** " . get_permalink( $post_id ) . "\n\n";
-			$markdown .= "**Type:** " . get_post_type( $post_id ) . "\n\n";
+			$markdown .= '## ' . $post->post_title . "\n\n";
+			$markdown .= '**URL:** ' . get_permalink( $post_id ) . "\n\n";
+			$markdown .= '**Type:** ' . get_post_type( $post_id ) . "\n\n";
 
 			// Get content and clean it.
 			$content = $post->post_content;
-			
+
 			// Strip HTML tags.
 			$content = wp_strip_all_tags( $content );
-			
+
 			// Decode HTML entities with proper UTF-8 handling.
 			$content = html_entity_decode( $content, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
-			
+
 			// Convert to UTF-8 if needed.
 			if ( ! mb_check_encoding( $content, 'UTF-8' ) ) {
 				$content = mb_convert_encoding( $content, 'UTF-8', mb_detect_encoding( $content ) );
 			}
-			
+
 			// Clean up whitespace.
 			$content = preg_replace( '/\n\s*\n/', "\n\n", $content );
 			$content = trim( $content );
@@ -434,6 +434,7 @@ class GeneratePage {
 		if ( $wp_filesystem ) {
 			$result = $wp_filesystem->put_contents( $file_path, $markdown, FS_CHMOD_FILE );
 		} else {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Fallback when WP_Filesystem is unavailable.
 			$result = file_put_contents( $file_path, $markdown, LOCK_EX );
 		}
 

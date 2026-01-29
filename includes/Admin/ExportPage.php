@@ -72,7 +72,7 @@ class ExportPage {
 				'i18n'    => array(
 					'selectAtLeastOneToExport' => __( 'Please select at least one item to export.', 'knowledge-base-chatbot' ),
 					'confirmExportAll'         => __( 'Are you sure you want to export all items of this type?', 'knowledge-base-chatbot' ),
-					'exporting'               => __( 'Exporting...', 'knowledge-base-chatbot' ),
+					'exporting'                => __( 'Exporting...', 'knowledge-base-chatbot' ),
 				),
 			)
 		);
